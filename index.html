@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Slider Teste</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div#container {
+            margin-left: calc(50% - 480px);
+        }
+        ul {
+            display: flex;
+            justify-items: center;
+            width: 960px;
+            height: 1280px;
+            /* border: 1px solid black; */
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        li {
+            display: inline-block;
+            list-style: none;
+        }
+
+        button.prev, button.next {
+            font-size: 32px;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            background-color: rgb(3, 3, 3, 0.3);
+            width: 44px;
+            height: 160px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+        }
+
+        button.prev {
+            position: absolute;
+            top: 560px;
+        }
+
+        button.next {
+            position: absolute;
+            margin-left: 916px;
+            top: 560px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="container">
+
+        <ul>
+            <li><img class="img1" src="images/images2/img1.jpeg"></li>
+            <li><img class="img2" src="images/images2/img2.jpeg"></li>
+            <li><img class="img3" src="images/images2/img3.jpeg"></li>
+        </ul>
+        <button class="prev" onclick="show(-1)">&lt;</button>
+        <button class="next" onclick="show(+1)">&gt;</button>
+
+    </div>
+
+    <script>
+        let liEls = document.querySelectorAll('ul li')
+        let index = 0
+        window.show = function(increaseDecrease) {
+            index = index + increaseDecrease
+            if (index >= liEls.length) {
+                index = 0
+            } if (index <= -1) {
+                index = liEls.length
+            }
+            index = Math.min(Math.max(index, 0), liEls.length-1)
+            liEls[index].scrollIntoView( { behavior: 'smooth' } )
+        }
+    </script>
+    
+</body>
+</html>
